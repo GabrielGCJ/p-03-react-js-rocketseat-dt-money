@@ -8,8 +8,6 @@ export const Header = () => {
 
             <img src={logoImg} alt="" />
 
-            {/* <h1>Header</h1> */}
-
             <NewTransactionButton>Nova Transação</NewTransactionButton>
             </HeaderContent>
         </HeaderContainer>
