@@ -19,3 +19,8 @@ npx json-server server.json -d 500
 *Essa função é usada para facilitar a visualização de um tempo referente a requisição lembrando o desenvolvedor de cuidar deste tempo de espera
 
 ---
+
+### Comando Aciona o script que aciona o json server:
+npm run dev:server
+
+---
