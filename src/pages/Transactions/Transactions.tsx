@@ -8,6 +8,7 @@ import {
   TransactionsTable,
 } from "./styles";
 import { TransactionsContext } from "../../contexts/TransactionsContext";
+import { dateFormatter, priceFormatter } from "../../utils/Formatter";
 
 
 
@@ -31,11 +32,16 @@ export const Transactions = () => {
                   <td width="40%">{transaction.description}</td>
                   <td>
                     <PriceHighLigth variant={transaction.type}>
-                      {transaction.price}
+                      {/* {transaction.price} */}
+                      {transaction.type === 'outcome' && '- '}
+                      {priceFormatter.format(transaction.price)}
                     </PriceHighLigth>
                   </td>
                   <td>{transaction.category}</td>
-                  <td>{transaction.createdAt}</td>
+                  <td>
+                    {/* {transaction.createdAt} */}
+                    {dateFormatter.format(new Date(transaction.createdAt))}
+                    </td>
                 </tr>
               );
             })}
