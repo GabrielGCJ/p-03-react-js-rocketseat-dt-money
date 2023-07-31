@@ -24,3 +24,7 @@ npx json-server server.json -d 500
 npm run dev:server
 
 ---
+
+### Ferramentas usadas:
+React Hook Form
+Zod
