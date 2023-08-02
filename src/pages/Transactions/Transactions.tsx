@@ -8,7 +8,7 @@ import {
   TransactionsTable,
 } from "./styles";
 import { TransactionsContext } from "../../contexts/TransactionsContext";
-import { dateFormatter, priceFormatter } from "../../utils/Formatter";
+import { dateFormatter, priceFormatter } from "../../utils/formatter";
 
 
 

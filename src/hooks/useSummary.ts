@@ -4,7 +4,7 @@ import { TransactionsContext } from "../contexts/TransactionsContext"
 export const useSummary = () => {
     const { transactions } = useContext(TransactionsContext)
 
-    console.log( "UseContext Transactions", transactions )
+    // console.log( "UseContext Transactions", transactions )
 
     const summary = transactions.reduce(
         (acc, transaction) => {
