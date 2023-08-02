@@ -2,7 +2,7 @@ import * as Dialog from '@radix-ui/react-dialog';
 import { CloseButton, Content, Overlay, TransactionTypeButton, TransectionType } from './styles';
 import { ArrowCircleDown, ArrowCircleUp, X } from 'phosphor-react';
 import * as z from 'zod'
-import { useForm } from "react-hook-form"
+import { useForm, Controller } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 
 
@@ -10,7 +10,7 @@ const newTransactionFormSchema = z.object({
     description: z.string(),
     price: z.number(),
     category: z.string(),
-    // type: z.enum(['income', 'outcome']),
+    type: z.enum(['income', 'outcome']),
 })
 
 type NewTransactionsFormInputs = z.infer<typeof newTransactionFormSchema>
@@ -18,11 +18,15 @@ type NewTransactionsFormInputs = z.infer<typeof newTransactionFormSchema>
 export const NewTransactionModal = () => {   
     
     const {
+        control,
         register, 
         handleSubmit,
         formState: { isSubmitting }
     } = useForm<NewTransactionsFormInputs>({
-        resolver: zodResolver(newTransactionFormSchema)
+        resolver: zodResolver(newTransactionFormSchema),
+        defaultValues: {
+            type: 'income'
+        }
     })
 
     const handleNewTransaction = async ( data: NewTransactionsFormInputs ) => {
@@ -64,18 +68,27 @@ export const NewTransactionModal = () => {
                         {...register('category')}
                     />
 
-                    <TransectionType>
-                        <TransactionTypeButton variant='income' value='income'>
-                            <ArrowCircleUp size={24} />
-                            Entrada
-                        </TransactionTypeButton>
-                        <TransactionTypeButton variant='outcome' value='outcome'>
-                            <ArrowCircleDown size={24} />
-                            Saida
-                        </TransactionTypeButton>
+                  <Controller
+                    control={control}
+                    name="type"
+                    render={({ field }) => {
+                        // console.log(field)
+                        return (                            
+                            <TransectionType onValueChange={field.onChange} value={field.value}>
+                                <TransactionTypeButton variant='income' value='income'>
+                                    <ArrowCircleUp size={24} />
+                                    Entrada
+                                </TransactionTypeButton>
 
-                    </TransectionType>
+                                <TransactionTypeButton variant='outcome' value='outcome'>
+                                    <ArrowCircleDown size={24} />
+                                    Saida
+                                </TransactionTypeButton>
 
+                            </TransectionType>
+                        )
+                    }}
+                  />
                     <button 
                         type='submit'
                         disabled={isSubmitting}                        
