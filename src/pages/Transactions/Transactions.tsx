@@ -1,21 +1,17 @@
-import { useContext } from "react";
-import { Header } from "../../components/Header/Header";
-import { Summary } from "../../components/Summary/Summary";
-import { SearchForm } from "./components/SearchForm/SearchForm";
+import { useContext } from 'react'
+import { Header } from '../../components/Header/Header'
+import { Summary } from '../../components/Summary/Summary'
+import { SearchForm } from './components/SearchForm/SearchForm'
 import {
   PriceHighLigth,
   TransactionsContainer,
   TransactionsTable,
-} from "./styles";
-import { TransactionsContext } from "../../contexts/TransactionsContext";
-import { dateFormatter, priceFormatter } from "../../utils/formatter";
-
-
+} from './styles'
+import { TransactionsContext } from '../../contexts/TransactionsContext'
+import { dateFormatter, priceFormatter } from '../../utils/formatter'
 
 export const Transactions = () => {
-
   const { transactions } = useContext(TransactionsContext)
- 
 
   return (
     <div>
@@ -41,13 +37,13 @@ export const Transactions = () => {
                   <td>
                     {/* {transaction.createdAt} */}
                     {dateFormatter.format(new Date(transaction.createdAt))}
-                    </td>
+                  </td>
                 </tr>
-              );
+              )
             })}
           </tbody>
         </TransactionsTable>
       </TransactionsContainer>
     </div>
-  );
-};
+  )
+}
