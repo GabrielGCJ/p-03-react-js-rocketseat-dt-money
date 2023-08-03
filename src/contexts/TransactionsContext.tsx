@@ -1,5 +1,14 @@
-import { ReactNode, createContext, useEffect, useState } from 'react'
+import { createContext } from 'use-context-selector'
 import { api } from '../lib/axios'
+import {
+  ReactNode,
+  // createContext,
+  useEffect,
+  useState,
+} from 'react'
+
+// Para um aumento da performace, ao invez de utilzar o use createContext
+// diretamente do react, podemos importar ele diretamente do use-context-selector.
 
 interface Transaction {
   id: number
