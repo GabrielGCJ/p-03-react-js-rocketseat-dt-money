@@ -10,9 +10,9 @@ import { ArrowCircleDown, ArrowCircleUp, X } from 'phosphor-react'
 import * as z from 'zod'
 import { useForm, Controller } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
-// import { api } from '../../lib/axios';
-import { useContext } from 'react'
+// import { useContext } from 'react'
 import { TransactionsContext } from '../../contexts/TransactionsContext'
+import { useContextSelector } from 'use-context-selector'
 
 const newTransactionFormSchema = z.object({
   description: z.string(),
@@ -24,7 +24,18 @@ const newTransactionFormSchema = z.object({
 type NewTransactionsFormInputs = z.infer<typeof newTransactionFormSchema>
 
 export const NewTransactionModal = () => {
-  const { createTransection } = useContext(TransactionsContext)
+  // const { createTransection } = useContext(TransactionsContext)
+
+  // O codigo abaixo tem por finalidade uma melhoria de performace ao utilizar o
+  // contexto TransactionsContext, ele funciona exatamente como o useContext
+  // normal porem usa a biblioteca useContextSelector.
+
+  const createTransection = useContextSelector(
+    TransactionsContext,
+    (context) => {
+      return context.createTransection
+    },
+  )
 
   const {
     reset,

@@ -1,4 +1,4 @@
-import { useContext } from 'react'
+// import { useContext } from 'react'
 import { Header } from '../../components/Header/Header'
 import { Summary } from '../../components/Summary/Summary'
 import { SearchForm } from './components/SearchForm/SearchForm'
@@ -9,9 +9,18 @@ import {
 } from './styles'
 import { TransactionsContext } from '../../contexts/TransactionsContext'
 import { dateFormatter, priceFormatter } from '../../utils/formatter'
+import { useContextSelector } from 'use-context-selector'
 
 export const Transactions = () => {
-  const { transactions } = useContext(TransactionsContext)
+  // const { transactions } = useContext(TransactionsContext)
+
+  // O codigo abaixo tem por finalidade uma melhoria de performace ao utilizar o
+  // contexto TransactionsContext, ele funciona exatamente como o useContext
+  // normal porem usa a biblioteca useContextSelector.
+
+  const transactions = useContextSelector(TransactionsContext, (context) => {
+    return context.transactions
+  })
 
   return (
     <div>
